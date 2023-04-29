@@ -28,6 +28,12 @@ class DataIngestion:
             logging.info("Read data as pandas DataFrame.")
 
             os.makedirs(os.path.dirname(self.data_ingestion_config.raw_data_path), exist_ok=True)
+
+            # Add Code to rename Columns by replacing spaces with underscores in utils.py
+            
+
+            # Add Code to rename Columns by replacing spaces with underscores in utils.py
+
             df.to_csv(self.data_ingestion_config.raw_data_path, index=False)
             logging.info("Successfully saved raw data.")
 
