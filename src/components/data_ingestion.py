@@ -7,6 +7,7 @@ from src.exception import CustomException
 import pandas as pd
 from dataclasses import dataclass
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 
 
 @dataclass
@@ -29,11 +30,10 @@ class DataIngestion:
 
             os.makedirs(os.path.dirname(self.data_ingestion_config.raw_data_path), exist_ok=True)
 
-            # Add Code to rename Columns by replacing spaces with underscores in utils.py
+            # Label Encode target feature to get binary output
+            df['diagnosis'] = LabelEncoder().fit_transform(df.diagnosis)
+            logging.info('Label Encoded diagnosis feature in Dataframe')
             
-
-            # Add Code to rename Columns by replacing spaces with underscores in utils.py
-
             df.to_csv(self.data_ingestion_config.raw_data_path, index=False)
             logging.info("Successfully saved raw data.")
 

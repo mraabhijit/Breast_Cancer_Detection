@@ -29,15 +29,15 @@ class DataTransformation:
 
             numerical_cols = ['radius_mean', 'texture_mean', 'perimeter_mean',
                               'area_mean', 'smoothness_mean', 'compactness_mean', 'concavity_mean',
-                              'concave_points_mean', 'symmetry_mean', 'fractal_dimension_mean',
+                              'concave points_mean', 'symmetry_mean', 'fractal_dimension_mean',
                               'radius_se', 'texture_se', 'perimeter_se', 'area_se', 'smoothness_se',
-                              'compactness_se', 'concavity_se', 'concave_points_se', 'symmetry_se',
+                              'compactness_se', 'concavity_se', 'concave points_se', 'symmetry_se',
                               'fractal_dimension_se', 'radius_worst', 'texture_worst',
                               'perimeter_worst', 'area_worst', 'smoothness_worst',
-                              'compactness_worst', 'concavity_worst', 'concave_points_worst',
+                              'compactness_worst', 'concavity_worst', 'concave points_worst',
                               'symmetry_worst', 'fractal_dimension_worst']
 
-            categorical_cols = ['diagnosis']
+            # categorical_cols = ['diagnosis']
 
             logging.info('Numeical Pipeline Initiated')
             num_pipeline = Pipeline(
@@ -50,20 +50,20 @@ class DataTransformation:
             logging.info('Numerical Pipeline Created')
 
 
-            logging.info('Categorical Pipeline Initiated')
-            cat_pipeline = Pipeline(
-                steps = [
-                    ('Encoder', LabelEncoder())
-                ]
-            )
+            # logging.info('Categorical Pipeline Initiated')
+            # cat_pipeline = Pipeline(
+            #     steps = [
+            #         ('Encoder', LabelEncoder())
+            #     ]
+            # )
 
-            logging.info('Ctegorical Pipeline Created')
+            # logging.info('Ctegorical Pipeline Created')
 
             logging.info('Column Transformer Initiated')
             preprocessor = ColumnTransformer(
                 [
-                ('num_pipeline', num_pipeline, numerical_cols),
-                ('cat_pipeline', cat_pipeline, categorical_cols)
+                ('num_pipeline', num_pipeline, numerical_cols)
+                # ('cat_pipeline', cat_pipeline, categorical_cols)
                 ]
             )
 
@@ -95,8 +95,32 @@ class DataTransformation:
             input_feature_train_df = train_df.drop(columns = columns_to_drop, axis = 1)
             target_feature_train_df = train_df[target_column]
 
+            # Rename column names to remove spaces
+            input_feature_train_df.rename({
+                "concave points_mean" : "concave_points_mean",
+                "concave points_se" : "concave_points_se",
+                "concave points_worst" : "concave_points_worst"
+            })
+            logging.info('Renamed columns in train data')
+
+            # Label Encode target feature to get binary output
+            # target_feature_train_df['diagnosis'] = LabelEncoder().fit_transform(target_feature_train_df.diagnosis)
+            # logging.info('Label Encoded target feature in training data')
+
             input_feature_test_df = test_df.drop(columns=columns_to_drop, axis = 1)
             target_feature_test_df = test_df[target_column]
+
+            # Rename column names to remove spaces
+            input_feature_test_df.rename({
+                "concave points_mean" : "concave_points_mean",
+                "concave points_se" : "concave_points_se",
+                "concave points_worst" : "concave_points_worst"
+            })
+            logging.info('Renamed columns in test data')
+
+            # Label Encode target feature to get binary output
+            # target_feature_test_df['diagnosis'] = LabelEncoder().fit_transform(target_feature_test_df.diagnosis)
+            # logging.info('Label Encoded target feature in test data')
 
             # Transforming using preprocessor obj
             input_feature_train_arr = preprocessor_obj.fit_transform(input_feature_train_df)
