@@ -27,14 +27,12 @@ class DataTransformation:
         try:
             logging.info('Data Transformation Started')
 
-            numerical_cols = ['radius_mean', 'texture_mean', 'perimeter_mean',
-                              'area_mean', 'smoothness_mean', 'compactness_mean', 'concavity_mean',
-                              'concave_points_mean', 'symmetry_mean', 'fractal_dimension_mean',
-                              'radius_se', 'texture_se', 'perimeter_se', 'area_se', 'smoothness_se',
+            numerical_cols = ['texture_mean', 'area_mean', 'smoothness_mean', 
+                              'concavity_mean', 'symmetry_mean', 'fractal_dimension_mean',
+                              'texture_se', 'area_se', 'smoothness_se',
                               'compactness_se', 'concavity_se', 'concave_points_se', 'symmetry_se',
-                              'fractal_dimension_se', 'radius_worst', 'texture_worst',
-                              'perimeter_worst', 'area_worst', 'smoothness_worst',
-                              'compactness_worst', 'concavity_worst', 'concave_points_worst',
+                              'fractal_dimension_se', 'texture_worst',
+                              'area_worst', 'smoothness_worst', 'concavity_worst',
                               'symmetry_worst', 'fractal_dimension_worst']
 
             logging.info('Numeical Pipeline Initiated')
@@ -78,8 +76,11 @@ class DataTransformation:
 
             preprocessor_obj = self.get_data_transformation_object()
 
-            target_column = 'diagnosis'
-            columns_to_drop = ['id', target_column]
+            target_column = ['diagnosis']
+            columns_to_drop = ['id', 'radius_mean', 'perimeter_mean', 'compactness_mean',
+                               'concave_points_mean', 'radius_se', 'perimeter_se', 
+                               'radius_worst', 'perimeter_worst', 'compactness_worst', 
+                               'concave_points_worst', 'diagnosis']
 
             input_feature_train_df = train_df.drop(columns = columns_to_drop, axis = 1)
             target_feature_train_df = train_df[target_column]
