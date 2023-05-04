@@ -41,7 +41,7 @@ def predict_datapoint():
             )
         final_data = data.get_data_as_dataframe()
         predict_pipeline = PredictPipeline()
-        pred = predict_pipeline.predict(final_data)
+        pred = predict_pipeline.predict_label(final_data)
 
         if pred[0] == 1:
             return render_template('results.html', final_result = 'Malignant')

@@ -28,11 +28,11 @@ class DataTransformation:
             logging.info('Data Transformation Started')
 
             numerical_cols = ['texture_mean', 'area_mean', 'smoothness_mean', 
-                              'concavity_mean', 'symmetry_mean', 'fractal_dimension_mean',
-                              'texture_se', 'area_se', 'smoothness_se',
-                              'compactness_se', 'concavity_se', 'concave_points_se', 'symmetry_se',
-                              'fractal_dimension_se', 'texture_worst',
-                              'area_worst', 'smoothness_worst', 'concavity_worst',
+                              'concavity_mean', 'symmetry_mean', 'fractal_dimension_mean', 
+                              'texture_se', 'area_se', 'smoothness_se', 
+                              'compactness_se', 'concavity_se', 'concave_points_se', 'symmetry_se', 
+                              'fractal_dimension_se', 'texture_worst', 
+                              'area_worst', 'smoothness_worst', 'concavity_worst', 
                               'symmetry_worst', 'fractal_dimension_worst']
 
             logging.info('Numeical Pipeline Initiated')
@@ -76,7 +76,7 @@ class DataTransformation:
 
             preprocessor_obj = self.get_data_transformation_object()
 
-            target_column = ['diagnosis']
+            target_column = 'diagnosis'
             columns_to_drop = ['id', 'radius_mean', 'perimeter_mean', 'compactness_mean',
                                'concave_points_mean', 'radius_se', 'perimeter_se', 
                                'radius_worst', 'perimeter_worst', 'compactness_worst', 

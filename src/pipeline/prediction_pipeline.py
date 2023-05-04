@@ -11,7 +11,7 @@ class PredictPipeline:
         pass
 
 
-    def predict(self, features):
+    def predict_label(self, features):
         try:
             preprocessor_path = os.path.join('artifacts', 'preprocessor.pkl')
             model_path = os.path.join('artifacts', 'model.pkl')
@@ -76,26 +76,26 @@ class CustomData:
     def get_data_as_dataframe(self):
         try:
             custom_data_input_dict = {
-                'texture_mean': [self.texture_mean],
-                'area_mean': [self.area_mean], 
-                'smoothness_mean': [self.smoothness_mean], 
-                'concavity_mean': [self.concavity_mean], 
-                'symmetry_mean': [self.symmetry_mean], 
-                'fractal_dimension_mean': [self.fractal_dimension_mean],
-                'texture_se': [self.texture_se], 
-                'area_se': [self.area_se], 
-                'smoothness_se': [self.smoothness_se], 
-                'compactness_se': [self.compactness_se], 
-                'concavity_se': [self.concavity_se], 
-                'concave_points_se': [self.concave_points_se], 
-                'symmetry_se': [self.symmetry_se],
-                'fractal_dimension_se': [self.fractal_dimension_se], 
-                'texture_worst': [self.texture_worst],
-                'area_worst': [self.area_worst], 
-                'smoothness_worst': [self.smoothness_worst], 
-                'concavity_worst': [self.concavity_worst],
-                'symmetry_worst': [self.symmetry_worst], 
-                'fractal_dimension_worst': [self.fractal_dimension_worst] 
+                'texture_mean': self.texture_mean,
+                'area_mean': self.area_mean, 
+                'smoothness_mean': self.smoothness_mean, 
+                'concavity_mean': self.concavity_mean, 
+                'symmetry_mean': self.symmetry_mean, 
+                'fractal_dimension_mean': self.fractal_dimension_mean,
+                'texture_se': self.texture_se, 
+                'area_se': self.area_se, 
+                'smoothness_se': self.smoothness_se, 
+                'compactness_se': self.compactness_se, 
+                'concavity_se': self.concavity_se, 
+                'concave_points_se': self.concave_points_se, 
+                'symmetry_se': self.symmetry_se,
+                'fractal_dimension_se': self.fractal_dimension_se, 
+                'texture_worst': self.texture_worst,
+                'area_worst': self.area_worst, 
+                'smoothness_worst': self.smoothness_worst, 
+                'concavity_worst': self.concavity_worst,
+                'symmetry_worst': self.symmetry_worst, 
+                'fractal_dimension_worst': self.fractal_dimension_worst 
             }
             df = pd.DataFrame(custom_data_input_dict)
             logging.info('DataFrame Created')
