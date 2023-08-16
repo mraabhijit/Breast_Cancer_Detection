@@ -1,13 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Breast Cancer Detection</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breast Cancer Detector</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #f0f8ff;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    header {
+      background-color: navy;
+      color: lightgrey;
+      padding: 20px;
+      width: 100%;
+    }
+
+    h1 {
+      margin: 0;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: navy;
+      color: lightgrey;
+      border: none;
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: navy;
+      color: lightgrey;
+      padding: 10px;
+      width: 100%;
+      margin-top: auto;
+    }
+  </style>
+  <script>
+    function redirectToDetailsPage() {
+      window.location.href = "predict";
+    }
+  </script>
 </head>
 <body>
-    <h1>
-        Breast Cancer Detection using Kaggle Dataset
-    </h1>
-    <a classs="" href="https://www.kaggle.com/datasets/yasserh/breast-cancer-dataset?select=breast-cancer.csv">Kaggle Dataset</a>    
+  <header>
+    <h1>Breast Cancer Detector</h1>
+  </header>
+  <main>
+    <h2>Welcome to Breast Cancer Detector homepage</h2>
+    <p>Get a preliminary analysis on presence of Breast Cancer!</p>
+    <button onclick="redirectToDetailsPage()">Get Analysis</button>
+  </main>
+  <footer>
+    <p>&copy; 2023 Breast Cancer Predictor</p>
+  </footer>
 </body>
 </html>
